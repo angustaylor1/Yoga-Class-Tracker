@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+History
+{% endblock %}
+
+{% block main %}
+
+{% for month, studios in history.items() %}
+<h2>{{ month }}</h2>
+<table class="table table-striped-columns">
+    <thead>
+        <tr>
+            <th>Studio</th>
+            <th>Number of Classes</th>
+            <th>Total Owed (£)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for studio in studios %}
+        <tr>
+            <td>{{ studio.studio }}</td>
+            <td>{{ studio.class_count }}</td>
+            <td>{{ studio.total_owed }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endfor %}
+
+
+{% endblock %}
