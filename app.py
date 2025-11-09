@@ -185,7 +185,7 @@ def history():
                 GROUP BY
                     monthly_summary.month, monthly_summary.studio
                 ORDER BY
-                    monthly_summary.month, studio_name;
+                    monthly_summary.month DESC, studio_name ASC;
                 """).fetchall()
     history = {}
 
