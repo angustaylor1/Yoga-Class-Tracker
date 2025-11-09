@@ -1,0 +1,125 @@
+CREATE TABLE studios (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL,
+    address TEXT NOT NULL
+);
+
+INSERT INTO studios(id, name, address) OVERRIDING SYSTEM VALUE VALUES
+(7,'Hotpod Yoga Dulwich','Unit 3, 13-19 Croxted Rd, London SE21 8SZ');
+INSERT INTO studios(id, name, address) OVERRIDING SYSTEM VALUE VALUES
+(8,'David Rhodes','58, Somerset Road, London, SW19 5JX');
+INSERT INTO studios(id, name, address) OVERRIDING SYSTEM VALUE VALUES
+(9,'ONCORE','65, Clapham Park Rd, London, SW4 7EQ');
+INSERT INTO studios(id, name, address) OVERRIDING SYSTEM VALUE VALUES
+(10,'St Martin''s School','22, Goodwyn Avenue, Mill Hill, London, NW7 3RG');
+INSERT INTO studios(id, name, address) OVERRIDING SYSTEM VALUE VALUES
+(11,'Hotpod Yoga Brixton','40, St Matthew''s Rd, London SW2 1NL');
+INSERT INTO studios(id, name, address) OVERRIDING SYSTEM VALUE VALUES
+(12,'Yogarise Streatham','248A Streatham High Rd, London, SW16 1HS');
+INSERT INTO studios(id, name, address) OVERRIDING SYSTEM VALUE VALUES
+(13,'Hotpod Belgravia','19 Eccleston Yards, London, SW1W 9AZ');
+
+CREATE TABLE classes (id SERIAL PRIMARY KEY NOT NULL, studio_id INTEGER NOT NULL, description TEXT NOT NULL, date_time TIMESTAMP, rate INTEGER NOT NULL, FOREIGN KEY(studio_id) REFERENCES studios(id));
+
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(4,8,'Double 1 hour private session','2025-07-02 09:00:00',80);
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(5,8,'Single 1 hour private session','2025-07-02 09:00:00',75);
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(6,7,'Hotpod Flow - 45mins','2025-07-02 12:30:00',40);
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(7,11,'Hotpod Flow','2025-07-02 16:00:00',54);
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(8,12,'Dynamic Flow','2025-07-02 18:45:00',35);
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(9,13,'Hotpod Flow','2025-07-03 09:30:00',54);
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(10,13,'Hotpod Flow','2025-07-03 11:00:00',54);
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(11,11,'Hotpod Flow','2025-07-03 17:30:00',54);
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(12,13,'Hotpod Flow','2025-07-04 11:00:00',54);
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(13,11,'Hotpod Flow','2025-07-04 16:00:00',54);
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(14,9,'Flow to Restore','2025-07-04 18:30:00',35);
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(15,13,'45 Minute Flow','2025-07-03 12:30:00',40);
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(16,13,'45 Minute Flow','2025-07-04 12:30:00',40);
+INSERT INTO classes(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(18,10,'Musical Theatre Lesson','2025-06-30 09:00:00',17);
+
+CREATE TABLE monthly_summary (
+    id SERIAL PRIMARY KEY NOT NULL,
+    studio INTEGER,
+    title TEXT,
+    date_time TIMESTAMP,
+    month TEXT,
+    class_id INTEGER,
+    FOREIGN KEY(studio) REFERENCES studios(id)
+);
+
+INSERT INTO monthly_summary(id, studio, title, date_time, month, class_id) OVERRIDING SYSTEM VALUE VALUES
+(1020,8,'David Rhodes Single 1 hour private session','2025-07-02 08:00:00','2025-07',5);
+INSERT INTO monthly_summary(id, studio, title, date_time, month, class_id) OVERRIDING SYSTEM VALUE VALUES
+(1021,8,'David Rhodes Single 1 hour private session','2025-07-09 08:00:00','2025-07',5);
+-- repeat this for all remaining monthly_summary inserts
+
+CREATE TABLE weekly_summary (
+    id SERIAL PRIMARY KEY NOT NULL,
+    studio_id INTEGER NOT NULL,
+    description TEXT NOT NULL,
+    date_time TIMESTAMP,
+    rate INTEGER NOT NULL,
+    FOREIGN KEY(studio_id) REFERENCES studios(id)
+);
+
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(5,8,'Single 1 hour private session','2025-07-02 09:00:00',75);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(6,7,'Hotpod Flow - 45mins','2025-07-02 12:30:00',40);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(7,11,'Hotpod Flow','2025-07-02 16:00:00',54);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(8,12,'Dynamic Flow','2025-07-02 18:45:00',35);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(9,13,'Hotpod Flow','2025-07-03 09:30:00',54);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(10,13,'Hotpod Flow','2025-07-03 11:00:00',54);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(11,11,'Hotpod Flow','2025-07-03 17:30:00',54);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(12,13,'Hotpod Flow','2025-07-04 11:00:00',54);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(13,11,'Hotpod Flow','2025-07-04 16:00:00',54);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(14,9,'Flow to Restore','2025-07-04 18:30:00',35);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(27,10,'Musical Theatre Lesson','2025-06-30 09:00:00',17);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(28,10,'Musical Theatre Lesson','2025-06-30 09:30:00',17);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(29,10,'Musical Theatre Lesson','2025-06-30 10:00:00',17);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(30,10,'Musical Theatre Lesson','2025-06-30 10:30:00',17);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(31,10,'Musical Theatre Lesson','2025-06-30 11:00:00',17);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(32,10,'Musical Theatre Lesson','2025-06-30 11:30:00',17);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(33,10,'Musical Theatre Lesson','2025-06-30 12:00:00',17);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(34,10,'Musical Theatre Lesson','2025-06-30 12:30:00',17);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(35,10,'Musical Theatre Lesson','2025-06-30 13:00:00',17);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(36,10,'Musical Theatre Lesson','2025-06-30 13:30:00',17);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(37,10,'Musical Theatre Lesson','2025-06-30 14:00:00',17);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(38,10,'Musical Theatre Lesson','2025-06-30 14:30:00',17);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(39,13,'45 Minute Flow','2025-07-03 12:30:00',40);
+INSERT INTO weekly_summary(id, studio_id, description, date_time, rate) OVERRIDING SYSTEM VALUE VALUES
+(40,13,'45 Minute Flow','2025-07-04 12:30:00',40);
