@@ -2,3 +2,4 @@ Flask
 Flask-Session
 python-dateutil
 gunicorn
+psycopg2-binary

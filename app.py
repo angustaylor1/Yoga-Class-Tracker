@@ -166,7 +166,7 @@ def save_month():
 @app.route("/history", methods=["GET", "POST"])
 def history():
     # Create a connection that gets all of the relevant stuff.
-    con = sqlite3.connect("Information.db")
+    con = sqlite3.connect("information.db")
     con.row_factory = sqlite3.Row
     cur = con.cursor()
 
