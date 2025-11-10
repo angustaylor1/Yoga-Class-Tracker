@@ -7,6 +7,7 @@ https://yoga-class-tracker-uln6.onrender.com/
 An interactive calendar using FullCalendar.js that loads all of the classes for each month and allows the user to customise to fit what was done each month.
 
 # Features to add
-- Functionality that allows multiple users to use the site.
 - Ability to delete records from the history page to account for mistakes.
-
+- Add a monthly total that gives a complete total to the thing.
+- Add functionality that allows user to add new classes, and alter existing ones.
+- Add functionality to allow the user to edit the existing default schedule.
