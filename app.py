@@ -191,7 +191,7 @@ def history():
         history[month].append({
             "studio": row["studio_name"],
             "total_owed": row["total_owed"],
-            "class_count": row["class_count"]
+            "class_count": row["class_count"],
         })
 
     return render_template("history.html", history=history)
