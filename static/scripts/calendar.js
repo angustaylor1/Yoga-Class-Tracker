@@ -11,7 +11,7 @@ function getEventsForCurrentMonth(calendar) {
         title: event.title,
         start: event.start.toISOString(),
         studio: event.extendedProps.studio,
-        class: event.extendedProps.class_id
+        class_id: event.extendedProps.class_id
     }));
 }
 
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 ...rawEventData,
                 extendedProps: {
                     studio: rawEventData.studio,
-                    class: rawEventData.class_id
+                    class_id: rawEventData.class_id
                 }
             };
         },
