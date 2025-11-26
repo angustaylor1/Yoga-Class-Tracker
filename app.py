@@ -149,7 +149,7 @@ def save_month():
                 event['title'],
                 start_dt,
                 month,
-                event['class']
+                event['class_id']
             ))
 
         con.commit()
