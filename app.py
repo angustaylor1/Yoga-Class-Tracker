@@ -196,7 +196,32 @@ def history():
 
     return render_template("history.html", history=history)
 
+@app.route('/edit_classes', methods=['GET', 'POST'])
+def edit_classes():
+    if request.method == "GET":
 
+        con = get_db_connection()
+        cur = con.cursor()
+
+        cur.execute(
+            """SELECT classes.description AS description, classes.date_time AS date, classes.rate AS rate, studios.name AS studio_name
+                FROM classes JOIN studios ON classes.studio_id = studios.id;
+            """)
+        data = cur.fetchall()
+        con.close()
+
+        classes = {}
+        for row in data:
+            classes.append({
+                "studio": row["studio_name"],
+                "description": row["description"],
+                "date": row["date"],
+                "rate": row["rate"]
+            })
+
+
+
+        return render_template('edit.html')
 
 
 if __name__ == "__main__":
